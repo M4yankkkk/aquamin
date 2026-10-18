@@ -1,0 +1,32 @@
+{
+  "full_model_cv": {
+    "R2": 0.997050876979738,
+    "RMSE": 0.7635881657625879,
+    "MAE": 0.5337844025069581,
+    "KGE": 0.9898618618342251,
+    "CatAcc": 0.9783995062744292,
+    "CatF1": 0.9553761338179231,
+    "Within5": 0.9989714050606872,
+    "OffBy2Plus": 0.0
+  },
+  "consensus_order": [
+    "pH",
+    "BOD",
+    "Turbidity",
+    "DO",
+    "NitrateN",
+    "EC",
+    "FecalColiform",
+    "TotalColiform"
+  ],
+  "forward_order": [
+    "pH",
+    "BOD",
+    "Turbidity",
+    "DO",
+    "NitrateN",
+    "EC",
+    "FecalColiform",
+    "TotalColiform"
+  ]
+}

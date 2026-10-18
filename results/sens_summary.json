@@ -1,0 +1,23 @@
+{
+  "equal_weight_describe": {
+    "count": 4861.0,
+    "mean": 48.003,
+    "std": 16.06,
+    "min": 12.171,
+    "25%": 35.007,
+    "50%": 45.61,
+    "75%": 63.263,
+    "max": 92.5
+  },
+  "equal_weight_spearman_vs_base": 0.7376650866182821,
+  "equal_weight_variance_share": {
+    "pH": 0.0437,
+    "BOD": 0.1513,
+    "DO": 0.0242,
+    "Turbidity": 0.1795,
+    "NitrateN": 0.0208,
+    "FecalColiform": 0.2735,
+    "EC": 0.0552,
+    "TotalColiform": 0.2519
+  }
+}

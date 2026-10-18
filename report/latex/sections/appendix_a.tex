@@ -1,0 +1,25 @@
+\section{Model hyper-parameters}
+\label{app:hyper}
+
+All values are fixed \emph{a priori} and shared by every subset, training size and validation scheme (\texttt{scripts/common.py}, \texttt{make\_model}).
+
+\begin{table}[h]
+\centering\small
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+Model & Settings \\
+\midrule
+Pre-processing & $\log(1+x)$ on BOD, fecal coliform, total coliform, turbidity, nitrate-N and EC; then standardisation (Linear, $k$NN, SVR, MLP, GPR only) \\
+Formula & \Cref{eq:wqi} over the available parameters, weights $K'/S_i$ renormalised to sum to 1, $q_i$ capped at 100 \\
+Linear & \texttt{LinearRegression()} \\
+$k$NN & \texttt{n\_neighbors=10, weights="distance"} \\
+SVR & \texttt{kernel="rbf", C=30, epsilon=0.5, gamma="scale"} \\
+MLP & \texttt{hidden\_layer\_sizes=(64,32), alpha=1e-3, learning\_rate\_init=3e-3, max\_iter=3000, early\_stopping=True, n\_iter\_no\_change=30} \\
+Random forest & \texttt{n\_estimators=400, min\_samples\_leaf=2, max\_features=1.0} \\
+XGBoost & \texttt{n\_estimators=600, learning\_rate=0.03, max\_depth=5, subsample=0.8, colsample\_bytree=0.9, min\_child\_weight=3, reg\_lambda=1, tree\_method="hist"} \\
+GPR & kernel $C\cdot\text{RBF}_{\text{ARD}}+\text{White}$, \texttt{normalize\_y=True}, 1 optimiser restart (0 in the scarcity sweep), at most 1,500 training rows \\
+Quantile GBM (CQR) & scikit-learn \texttt{HistGradientBoostingRegressor(loss="quantile")} at $q=0.05$ and $0.95$; \texttt{max\_iter=400, learning\_rate=0.05, max\_leaf\_nodes=31, min\_samples\_leaf=20} \\
+Universal masked model & XGBoost as above with \texttt{n\_estimators=900}; training data = original + 6 masked copies, each value dropped with probability 0.5 (at least one kept) \\
+\bottomrule
+\end{tabularx}
+\end{table}

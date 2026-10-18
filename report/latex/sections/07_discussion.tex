@@ -1,0 +1,80 @@
+\section{Discussion}
+\label{sec:discussion}
+
+\subsection{Answer to the research question}
+
+\begin{keybox}[Can reduced-parameter monitoring provide reliable WQI prediction for data-scarce river systems?]
+\textbf{Yes, for the CPCB index, with three parameters, provided the right three are measured precisely and the model has been trained on at least a few dozen stations.}
+
+At river stations the model has never seen, a model using only pH, DO and BOD reproduces the full eight-parameter index with \R{}\,=\,0.957, RMSE 2.9 points (on a 0--100 scale with s.d.\ 14.1) and 90.6\% category accuracy. No visit is ever misplaced by more than one category. It holds up on unseen rivers (\R{}\,=\,0.94), unseen states (0.94) and unseen seasons (0.95), and it comes with conformal intervals that keep their nominal 90\% coverage. Swapping DO for turbidity, or adding free location and month information, raises this to \R{}\,$\approx$\,0.98. Adding turbidity to \sub{S3} gives 0.994, practically the full index.
+\end{keybox}
+
+The qualifications matter as much as the headline.
+\begin{enumerate}
+  \item \textbf{``The right three''.} Of the 56 possible three-parameter panels, the median achieves only \R{}\,=\,0.53. The pre-registered \sub{S5} adds two parameters that contribute nothing. Parameter choice must follow the index's actual structure, which the analytic variance decomposition and the model-based importances both reveal and agree on.
+  \item \textbf{``For the CPCB index''.} The answer is formula-specific. Under equal weights the same \sub{S3} explains only 62\% of the variance, and for the uncapped index 37\%. A reduced panel inherits the priorities of the index it imitates.
+  \item \textbf{``Measured precisely''.} pH noise of $\pm$0.1 costs more accuracy than dropping five parameters.
+  \item \textbf{``A few dozen stations''.} With fewer than about 25 training stations, no learned model beats re-weighting the formula. The models only pay off from there on.
+  \item \textbf{BOD is not a sensor.} The best three-parameter panels all contain BOD, a five-day laboratory test. A fully real-time, probe-only panel (\sub{Sensor-4}: pH, DO, EC, turbidity) reaches only \R{}\,=\,0.83 (category accuracy 82\%). That is a useful screening tool, not a substitute for the index.
+\end{enumerate}
+
+\subsection{Recommended monitoring kit}
+
+\Cref{tab:kit} turns the results into tiers. Each tier lists its incremental cost and the accuracy expected at an \emph{unseen} station, with a 90\% conformal half-width.
+
+\begin{table}[h]
+\centering\small
+\caption{Recommended tiers (XGBoost, unseen stations). ``Half-width'' is the 90\% split-conformal interval half-width in WQI points, from the pooled out-of-fold residuals. Tier 0 uses \sub{S4-routine+context}, Tier 1 \sub{I4-importance} and Tier 2 \sub{I5-importance}.}
+\label{tab:kit}
+\begin{tabularx}{\textwidth}{>{\raggedright\arraybackslash}p{2.8cm}>{\raggedright\arraybackslash}X rrrr}
+\toprule
+Tier & Parameters (added cost) & \R{} & RMSE & Cat.\ acc. & Half-width \\
+\midrule
+0 Routine & pH, DO, BOD, fecal coliform + lat/lon/month (nothing new: what stations already report) & 0.977 & 2.12 & 93.9\% & 3.6 \\
+1 + turbidity probe & pH, DO, BOD, turbidity (one cheap, instant probe) & 0.994 & 1.13 & 96.8\% & 1.6 \\
+2 + nitrate kit & pH, DO, BOD, turbidity, nitrate-N (field kit) & 0.998 & 0.70 & 97.7\% & 1.1 \\
+Robust / public health & \sub{S7}: pH, DO, BOD, fecal \& total coliform, EC, turbidity & 0.994 & 1.08 & 97.0\% & 1.5 \\
+Screening only & \sub{Sensor-4}: pH, DO, EC, turbidity (all probes, no lab) & 0.828 & 5.82 & 82.4\% & 9.8 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+These tiers come with operating rules:
+\begin{itemize}
+  \item \textbf{Calibrate pH to $\pm$0.05} and quality-control BOD. These two measurements carry 87.5\% of the index variance.
+  \item \textbf{Use a bank of dedicated models} routed on whichever parameters were actually measured, rather than imputing missing pH or BOD.
+  \item \textbf{Match the model to the data volume.} Use the renormalised formula below about 25 training stations, GPR up to about 50--100, and XGBoost beyond that.
+  \item \textbf{Always publish the conformal interval} with the estimate. Flag visits whose interval straddles a category boundary (roughly 35--40\% of visits for \sub{S3}) as ``category uncertain''.
+  \item \textbf{Report fecal coliform exceedance separately} (next subsection).
+\end{itemize}
+
+\subsection{Why learning beats re-weighting the formula}
+
+When a parameter is missing, re-weighting the formula over the observed parameters implicitly assumes that the missing sub-indices equal the weighted average of the observed ones. In river water this is systematically wrong. Turbidity's capped sub-index averages 67, while the observed \sub{S3} sub-indices average about 60, and turbidity's sub-index varies with season and region rather than with pH. A learned model instead estimates $\mathbb{E}[\text{missing contribution}\mid x_S]$, which uses the correlations between parameters (BOD with turbidity and coliforms, monsoon with turbidity, region with all of them). This is why it gains most where the formula fails worst. Examples are \sub{Sensor-4}, where \R{} rises from 0.39 to 0.83, and the context-augmented subsets, where month and location carry information that no formula can use.
+
+\subsection{The coliform blind spot}
+
+Under $W_i\propto 1/S_i$, fecal coliform (standard 500 MPN/100\,mL) receives a weight of 0.0016, against 0.40 for pH (``standard'' 2 pH units). As a result fecal coliform exceeds the CPCB bathing standard on 33.7\% of visits yet explains 0.2\% of the index. Two practical consequences follow. First, the success of \sub{S3} is partly an artefact of this blind spot: the reduced panel does not need coliforms because the index does not use them. Second, any agency using either the full or the reduced CPCB index to communicate bathing safety should publish the fecal coliform exceedance \emph{alongside} it. Alternatively it should adopt a weighting that gives pathogens real influence, for which \sub{S7} is the reduced panel that holds up (\cref{sec:res-sens}).
+
+\iffull\subsection{Comparison with the original project plan}
+
+Several planned elements changed in response to the real data:
+\begin{itemize}
+  \item \textbf{Hypothesised sensor-only subsets} (pH, DO, temperature, conductivity, turbidity) were infeasible. Temperature is never recorded in this feed, and probe-only panels lack the BOD signal the index depends on.
+  \item \textbf{The pre-registered subsets} were kept and evaluated. \sub{S3} proved an excellent choice, \sub{S5} a poor one.
+  \item \textbf{The temporal split} was replaced by a held-out-season scheme because labels exist for 2020 only.
+  \item \textbf{Cross-country transfer} (USGS/WQP) and the \textbf{interactive demo app} were not attempted. Neither is needed to answer the research question, and both remain natural extensions.
+\end{itemize}
+
+\fi\subsection{Limitations and threats to validity}
+
+\begin{itemize}
+  \item \textbf{One labelled year.} All ground truth is from 2020. Seasonal transfer was tested, but inter-annual transfer could not be validated directly. The deployment to 2018, 2019 and 2021 rests on the shift-corrected error estimate and on the plausibility checks in \cref{sec:res-deploy}, not on held-out truth.
+  \item \textbf{BOD reporting floor.} Outside 2020, low BOD values appear to be left blank. This is a selection effect on which visits can be reconstructed, not a model error, but it biases naive year-to-year comparisons upward. A censored-data treatment (e.g.\ Tobit models or substitution at half the detection limit) would let those visits be included.
+  \item \textbf{Ground-truth definition.} Every accuracy number is relative to one index definition with documented but partly secondary standards. \Cref{sec:res-sens} shows how much this matters.
+  \item \textbf{River identification} relies on matching about 95 river names. Stations on rivers missing from the list are excluded, so the study covers major and medium rivers better than small ones. Those small rivers are precisely the most data-scarce systems.
+  \item \textbf{Spatial dependence.} Holding out stations does not remove correlation between neighbouring stations on the same river. The unseen-river and unseen-state schemes bound this effect (RMSE +15\%).
+  \item \textbf{Fixed hyper-parameters} were used for fairness across subsets. Tuning could improve every model slightly but would not change the rankings, which are separated by much larger margins.
+  \item \textbf{GPR approximation.} GPR was fitted to at most 1,500 rows. This handicaps it at full data size but not in the scarce regime where it is recommended.
+  \item \textbf{Data issues found but not fixed.} A misplaced 92-row CWC file, and about 3,000 rows in 2020 with colour descriptors (``Clear'', ``Light Brown'') in the BOD column, point to column misalignment in some source files. Neither affects the labelled set, because those rows lack a numeric BOD.
+\end{itemize}

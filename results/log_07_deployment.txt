@@ -1,0 +1,82 @@
+<frozen site>:107: RuntimeWarning: Unexpected value in sys.prefix, expected /home/mayank-tiwari/Projects/envi-project/.venv, got /home/mayank-tiwari/Projects/envi-project/scripts/../.venv
+<frozen site>:107: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /home/mayank-tiwari/Projects/envi-project/.venv, got /home/mayank-tiwari/Projects/envi-project/scripts/../.venv
+            param  year     KS    p  median_lab  median_deploy  pct_outside_train_range
+0              pH  2018  0.116  0.0         7.8           7.72                    1.892
+1              pH  2019  0.051  0.0         7.8           7.80                    1.998
+2              pH  2020  0.151  0.0         7.8           7.70                    0.759
+3              pH  2021  0.103  0.0         7.8           7.75                    0.818
+4              DO  2018  0.112  0.0         7.2           7.00                    1.405
+5              DO  2019  0.102  0.0         7.2           7.00                    0.596
+6              DO  2020  0.174  0.0         7.2           7.60                    1.429
+7              DO  2021  0.079  0.0         7.2           7.00                    0.657
+8             BOD  2018  0.312  0.0         1.7           2.50                    0.881
+9             BOD  2019  0.269  0.0         1.7           2.40                    0.438
+10            BOD  2020  0.135  0.0         1.7           1.80                    1.116
+11            BOD  2021  0.253  0.0         1.7           2.20                    0.642
+12  FecalColiform  2018  0.081  0.0       130.0         220.00                    1.949
+13  FecalColiform  2019  0.070  0.0       130.0         210.00                    2.015
+14  FecalColiform  2020  0.124  0.0       130.0         240.00                    4.789
+15  FecalColiform  2021  0.122  0.0       130.0         320.00                    0.957
+[{'features': 'S3', 'AUC': 0.770752643742413}, {'features': 'S3+Month', 'AUC': 0.7769962180895944}]
+       count   mean    std    min    25%    50%    75%    max
+Year                                                         
+2018  5337.0  62.97  13.31  24.49  53.15  63.16  72.91  91.68
+2019  5705.0  62.31  13.20  23.13  52.70  62.33  72.18  91.44
+2020  2240.0  54.66  15.55  13.96  43.07  53.29  66.93  92.51
+2021  6850.0  60.86  12.86  24.48  51.51  60.26  70.53  94.22
+Category_pred_S3  Excellent  Good  Poor  Very Poor
+Year                                              
+2018                    0.0  18.3  61.4       20.3
+2019                    0.0  18.7  62.9       18.4
+2020                    1.2  40.8  46.3       11.8
+2021                    0.1  21.5  63.0       15.4
+{2018: {'n_stations': 432, 'pearson': 0.596142525525571}, 2019: {'n_stations': 493, 'pearson': 0.7105607028265365}, 2021: {'n_stations': 508, 'pearson': 0.7292377542935161}, 2020: {'n_stations': 321, 'pearson': 0.8026024843679038}}
+{
+  "n_labelled": 4861,
+  "n_deploy_S3": 20132,
+  "n_deploy_S4": 16686,
+  "deploy_by_year": {
+    "2018": 5337,
+    "2019": 5705,
+    "2020": 2240,
+    "2021": 6850
+  },
+  "deploy_stations": 819,
+  "deploy_stations_never_labelled": 255,
+  "deploy_rivers": 70,
+  "adversarial_auc": [
+    {
+      "features": "S3",
+      "AUC": 0.770752643742413
+    },
+    {
+      "features": "S3+Month",
+      "AUC": 0.7769962180895944
+    }
+  ],
+  "conformal_halfwidth_90": {
+    "S3": 4.7219080668564,
+    "S4-routine": 4.371595036108687
+  },
+  "S3_vs_S4_pred_corr": 0.9939177917957854,
+  "S3_vs_S4_mean_abs_diff": 1.1851889881086939,
+  "formula_bias_vs_model": 3.549164765202066,
+  "station_persistence": {
+    "2018": {
+      "n_stations": 432,
+      "pearson": 0.596142525525571
+    },
+    "2019": {
+      "n_stations": 493,
+      "pearson": 0.7105607028265365
+    },
+    "2021": {
+      "n_stations": 508,
+      "pearson": 0.7292377542935161
+    },
+    "2020": {
+      "n_stations": 321,
+      "pearson": 0.8026024843679038
+    }
+  }
+}

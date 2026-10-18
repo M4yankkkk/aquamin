@@ -1,0 +1,9 @@
+,mutual_info,rf_impurity,xgb_gain,permutation_r2_drop,mean_abs_shap,drop_column_r2,formula_variance_share,abs_spearman
+pH,1.0,1.0,2.0,1.0,1.0,1.0,1.0,2.0
+BOD,2.0,2.0,1.0,2.0,2.0,2.0,2.0,1.0
+Turbidity,7.0,3.0,3.0,3.0,3.0,3.0,3.0,5.0
+DO,6.0,4.0,4.0,4.0,4.0,4.0,4.0,7.0
+NitrateN,8.0,5.0,5.0,5.0,5.0,5.0,5.0,8.0
+EC,3.0,6.0,7.0,6.0,6.0,8.0,7.0,6.0
+FecalColiform,5.0,7.0,8.0,7.0,7.0,6.0,6.0,4.0
+TotalColiform,4.0,8.0,6.0,8.0,8.0,7.0,8.0,3.0

@@ -1,0 +1,51 @@
+<frozen site>:107: RuntimeWarning: Unexpected value in sys.prefix, expected /home/mayank-tiwari/Projects/envi-project/.venv, got /home/mayank-tiwari/Projects/envi-project/scripts/../.venv
+<frozen site>:107: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /home/mayank-tiwari/Projects/envi-project/.venv, got /home/mayank-tiwari/Projects/envi-project/scripts/../.venv
+            param  factor  mean_abs_change  max_abs_change  spearman  category_agreement   R2_S3  R2_I3-importance   R2_S7
+0             BOD    0.50          11.5851         25.3290    0.9229              0.5303  0.9765            0.9874  0.9966
+1             BOD    2.00           5.1272         16.3046    0.9297              0.8140  0.9347            0.9648  0.9916
+2              DO    0.80           0.6988          2.6480    0.9990              0.9768  0.9575            0.9700  0.9939
+3              DO    1.20           0.6778          1.9543    0.9990              0.9755  0.9557            0.9822  0.9942
+4       Turbidity    0.50           3.0758          9.4461    0.9839              0.8770  0.8983            0.9789  0.9940
+5       Turbidity    2.00           1.6290          5.0239    0.9926              0.9385  0.9826            0.9756  0.9940
+6        NitrateN    0.50           2.8265          7.7463    0.9890              0.9002  0.9310            0.9442  0.9730
+7        NitrateN    2.00           1.8845          3.8160    0.9983              0.9237  0.9597            0.9816  0.9974
+8   FecalColiform    0.50           0.0666          0.2020    1.0000              0.9971  0.9564            0.9770  0.9941
+9   FecalColiform    2.00           0.0327          0.1039    1.0000              0.9994  0.9567            0.9767  0.9941
+10  TotalColiform    0.50           0.0064          0.0200    1.0000              0.9998  0.9566            0.9770  0.9942
+11  TotalColiform    2.00           0.0032          0.0103    1.0000              1.0000  0.9566            0.9768  0.9942
+12             EC    0.50           0.0314          0.1033    1.0000              0.9992  0.9567            0.9769  0.9942
+13             EC    2.00           0.0106          0.0476    1.0000              0.9996  0.9566            0.9769  0.9941
+14       EC-sweep    0.25           0.1240          0.2559    1.0000              0.9965  0.9566            0.9769  0.9941
+15       EC-sweep    0.50           0.0314          0.1033    1.0000              0.9992  0.9567            0.9769  0.9942
+16       EC-sweep    0.75           0.0082          0.0384    1.0000              1.0000  0.9566            0.9769  0.9941
+17       EC-sweep    1.50           0.0071          0.0362    1.0000              0.9998  0.9566            0.9769  0.9942
+18       EC-sweep    2.00           0.0106          0.0476    1.0000              0.9996  0.9566            0.9769  0.9941
+19       EC-sweep    3.00           0.0143          0.0553    1.0000              0.9994  0.9566            0.9769  0.9941
+20       EC-sweep    4.00           0.0163          0.0575    1.0000              0.9996  0.9566            0.9770  0.9942
+     k                                                       subset        R2      RMSE    CatAcc
+7    1                                                TotalColiform  0.722284  8.462495  0.812590
+33   2                                             FecalColiform+EC  0.840815  6.406923  0.830899
+87   3                                   Turbidity+EC+TotalColiform  0.914464  4.696492  0.859700
+140  4                               BOD+Turbidity+FecalColiform+EC  0.954733  3.416552  0.901666
+177  5                            pH+BOD+Turbidity+EC+TotalColiform  0.978977  2.328326  0.939930
+228  6                   pH+BOD+Turbidity+NitrateN+FecalColiform+EC  0.987379  1.804011  0.953508
+246  7                pH+BOD+DO+Turbidity+NitrateN+FecalColiform+EC  0.991528  1.478063  0.963999
+254  8  pH+BOD+DO+Turbidity+NitrateN+FecalColiform+EC+TotalColiform  0.995619  1.062848  0.972434
+          subset  k  R2_base  CatAcc_base  R2_equalweight  CatAcc_equalweight  rank_equalweight
+0             S3  3   0.9568       0.9068          0.6168              0.7231                47
+1     S4-routine  4   0.9644       0.9194          0.9017              0.8692                29
+2             S5  5   0.9673       0.9224          0.9369              0.8899                26
+3             S7  7   0.9942       0.9702          0.9900              0.9615                 3
+4  I3-importance  3   0.9769       0.9401          0.8016              0.8029                36
+5  I5-importance  5   0.9976       0.9782          0.8465              0.8325                53
+6       Sensor-4  4   0.8279       0.8235          0.7065              0.7513                63
+7         Full-8  8   0.9971       0.9784          0.9956              0.9724                 1
+          subset  R2_log  RMSE_log  CatAcc_5class  Unsuitable_recall  median_rel_err
+0             S3  0.3737    0.2340         0.4559             0.5350          0.2741
+1     S4-routine  0.6305    0.1798         0.6285             0.7257          0.1598
+2             S5  0.6981    0.1625         0.6517             0.7305          0.1457
+3             S7  0.9928    0.0251         0.9533             0.9743          0.0169
+4  I3-importance  0.9797    0.0422         0.9052             0.9429          0.0366
+5  I5-importance  0.9831    0.0384         0.9259             0.9445          0.0237
+6       Sensor-4  0.9245    0.0813         0.7776             0.8729          0.0814
+7         Full-8  0.9938    0.0232         0.9609             0.9759          0.0156

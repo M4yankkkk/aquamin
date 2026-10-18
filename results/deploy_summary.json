@@ -1,0 +1,68 @@
+{
+  "n_labelled": 4861,
+  "n_deploy_S3": 20132,
+  "n_deploy_S4": 16686,
+  "deploy_by_year": {
+    "2018": 5337,
+    "2019": 5705,
+    "2020": 2240,
+    "2021": 6850
+  },
+  "deploy_stations": 819,
+  "deploy_stations_never_labelled": 255,
+  "deploy_rivers": 70,
+  "adversarial_auc": [
+    {
+      "features": "S3",
+      "AUC": 0.770752643742413
+    },
+    {
+      "features": "S3+Month",
+      "AUC": 0.7769962180895944
+    }
+  ],
+  "conformal_halfwidth_90": {
+    "S3": 4.7219080668564,
+    "S4-routine": 4.371595036108687
+  },
+  "shift_corrected_error": {
+    "effective_sample_size": 2107.098246139755,
+    "S3": {
+      "RMSE_unweighted": 2.9281513300039985,
+      "RMSE_weighted": 3.006093000209201,
+      "CatAcc_unweighted": 0.9055749845710759,
+      "CatAcc_weighted": 0.900009135568345,
+      "Coverage90_unweighted": 0.9002262908866488,
+      "Coverage90_weighted": 0.8826252314788317
+    },
+    "S4-routine": {
+      "RMSE_unweighted": 2.64789091380578,
+      "RMSE_weighted": 2.746070366384086,
+      "CatAcc_unweighted": 0.9181238428306933,
+      "CatAcc_weighted": 0.9127471588204609,
+      "Coverage90_unweighted": 0.9002262908866488,
+      "Coverage90_weighted": 0.8909566997326045
+    }
+  },
+  "S3_vs_S4_pred_corr": 0.9939177917957854,
+  "S3_vs_S4_mean_abs_diff": 1.1851889881086939,
+  "formula_bias_vs_model": 3.549164765202066,
+  "station_persistence": {
+    "2018": {
+      "n_stations": 432,
+      "pearson": 0.596142525525571
+    },
+    "2019": {
+      "n_stations": 493,
+      "pearson": 0.7105607028265365
+    },
+    "2021": {
+      "n_stations": 508,
+      "pearson": 0.7292377542935161
+    },
+    "2020": {
+      "n_stations": 321,
+      "pearson": 0.8026024843679038
+    }
+  }
+}

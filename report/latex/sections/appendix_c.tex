@@ -1,0 +1,53 @@
+\section{Reproducing the results}
+\label{app:repro}
+
+\begin{small}
+\begin{verbatim}
+# environment (Python 3.12+; tested on 3.14)
+python3 -m venv .venv && .venv/bin/pip install -r requirements.txt
+
+# data pipeline (raw CSVs in data/raw/, see data/raw/links_*.txt)
+.venv/bin/python scripts/build_dataset.py   # -> data/processed/cpcb_*.csv
+.venv/bin/python scripts/compute_wqi.py     # -> data/processed/cpcb_wqi.csv
+
+# analysis (run from scripts/, in order; outputs in results/ and figures/)
+cd scripts
+../.venv/bin/python 01_eda.py            #  ~10 s
+../.venv/bin/python 02_importance.py     #  ~3 min
+../.venv/bin/python 03_combinatorial.py  #  ~30 s
+../.venv/bin/python 04_models.py         #  longest (GPR fits)
+../.venv/bin/python 05_scarcity.py
+../.venv/bin/python 06_uncertainty.py
+../.venv/bin/python 07_deployment.py     # needs results/oof_station.csv from 04
+../.venv/bin/python 08_sensitivity.py    # needs results/combinatorial.csv from 03
+../.venv/bin/python 09_robustness.py
+
+../.venv/bin/python 10_tables.py         # appendix tables from results/*.csv
+
+# report: both PDF versions, then both Markdown versions
+cd ../report/latex
+tectonic --keep-intermediates main_full.tex
+tectonic --keep-intermediates main_trimmed.tex
+cd ../.. && python3 scripts/11_make_markdown.py
+\end{verbatim}
+\end{small}
+
+\begin{table}[h]
+\centering\small
+\caption{Main output files.}
+\begin{tabularx}{\textwidth}{lX}
+\toprule
+File & Content \\
+\midrule
+\texttt{results/importance\_scores.csv} & eight importance scores and consensus rank per parameter \\
+\texttt{results/combinatorial.csv} & station-CV metrics of all 255 subsets (XGBoost and formula) \\
+\texttt{results/models\_cv.csv} & every model $\times$ subset $\times$ scheme, all metrics with fold s.d. \\
+\texttt{results/oof\_station.csv} & out-of-fold predictions (unseen stations) for every model and subset \\
+\texttt{results/scarcity.csv} & data-scarcity sweep, aggregated over folds and repeats \\
+\texttt{results/uncertainty.csv} & interval coverage and width per method and subset \\
+\texttt{results/robust\_*.csv} & universal model, missing data and noise experiments \\
+\texttt{results/sens\_*.csv} & sensitivity to standards, equal weights and uncapped target \\
+\texttt{results/deploy\_predictions.csv} & reconstructed WQI for every unlabelled river visit with pH, DO, BOD \\
+\bottomrule
+\end{tabularx}
+\end{table}

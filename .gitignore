@@ -1,0 +1,15 @@
+.venv/
+__pycache__/
+*.pyc
+
+# Raw CPCB downloads (57 MB) are re-fetchable from data/raw/links_*.txt.
+# data/processed/ stays tracked: build_dataset.py regenerates it byte-identically.
+data/raw/**/*.csv
+
+# LaTeX / converter build intermediates
+report/latex/*.aux
+report/latex/*.log
+report/latex/*.out
+report/latex/*.toc
+report/.tmp_*.tex
+node_modules/

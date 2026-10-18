@@ -1,0 +1,56 @@
+\usepackage[a4paper,margin=2.4cm,headheight=14pt]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage[table]{xcolor}
+\usepackage{siunitx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage[most]{tcolorbox}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage[hidelinks]{hyperref}
+\usepackage[capitalise,noabbrev]{cleveref}
+
+\graphicspath{{figures/}{diagrams/}}
+\sisetup{group-separator={,},group-minimum-digits=4}
+
+\definecolor{accent}{HTML}{30638E}
+\definecolor{warn}{HTML}{D1495B}
+\definecolor{good}{HTML}{66A182}
+
+\captionsetup{font=small,labelfont=bf,margin=4pt}
+\setlist{itemsep=2pt,topsep=4pt}
+\setlength{\parskip}{3pt}
+
+\titleformat{\section}{\Large\bfseries\color{accent}}{\thesection}{0.8em}{}
+\titleformat{\subsection}{\large\bfseries}{\thesubsection}{0.7em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries}{\thesubsubsection}{0.6em}{}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textit{Reduced-Parameter WQI Prediction}}
+\fancyhead[R]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\newtcolorbox{keybox}[1][]{colback=accent!5,colframe=accent,boxrule=0.6pt,arc=2pt,
+  left=6pt,right=6pt,top=4pt,bottom=4pt,fonttitle=\bfseries\small,title=#1}
+\newtcolorbox{warnbox}[1][]{colback=warn!5,colframe=warn,boxrule=0.6pt,arc=2pt,
+  left=6pt,right=6pt,top=4pt,bottom=4pt,fonttitle=\bfseries\small,title=#1}
+
+\newcommand{\R}{R$^2$}
+\newcommand{\wqi}{\mathrm{WQI}}
+\newcommand{\Sthree}{\textsf{S3}}
+\newcommand{\sub}[1]{\textsf{#1}}
+
+% reference to a figure/table that only exists in the full version
+\newcommand{\optref}[1]{\iffull~(\cref{#1})\fi}

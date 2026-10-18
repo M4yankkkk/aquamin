@@ -1,0 +1,17 @@
+\section{Conclusion and Future Work}
+\label{sec:conclusion}
+
+Using 32,968 real CPCB river monitoring visits, this study shows that the full eight-parameter water quality index is available for only 15\% of visits, and only for a single year. It also shows that this gap can largely be closed with reduced-parameter models. The capped CPCB index is dominated by pH and BOD. A model trained on pH, DO and BOD from about 25 or more stations reproduces it at new stations with \R{}\,=\,0.96, category accuracy 91\% and calibrated intervals of about $\pm$4.7 points. Adding a turbidity probe brings it to \R{}\,=\,0.99. Machine learning clearly outperforms re-computing the index from the available parameters, except when training data come from fewer than about 25 stations. Applied to the visits that never had a full panel, the model gives the first full-panel WQI estimates for 20,132 visits and 255 stations.
+
+The study also qualifies the premise. The parameters that matter are dictated by the index's weighting, and the CPCB weighting is effectively blind to bacterial contamination. Measurement precision, above all for pH, matters more than the number of parameters. Year-to-year comparisons in the CPCB record are confounded by a BOD reporting floor.
+
+\paragraph{Future work.}
+\begin{enumerate}
+  \item Add 2022 onward data, if more full-panel years become available, to test inter-annual transfer directly.
+  \item Treat below-detection-limit BOD as left-censored instead of missing.
+  \item Repeat the analysis for the NSF and CCME indices and for a pathogen-weighted index.
+  \item Use the CPCB real-time stations (pH, DO, conductivity, turbidity, temperature every 15 minutes) to test sensor-only panels at high frequency.
+  \item Replace the turbidity probe with satellite turbidity proxies (e.g.\ Sentinel-2 reflectance) for a zero-hardware Tier 1.
+  \item Formulate parameter selection as a cost-constrained optimisation using real per-test costs.
+  \item Package the model bank with conformal intervals as a small web tool for monitoring staff.
+\end{enumerate}

@@ -1,0 +1,27 @@
+\section{Background}
+\label{sec:background}
+
+\subsection{Water quality indices}
+
+\citet{horton1965} proposed the first general water quality index. It was a weighted combination of rating scores for individual parameters. \citet{brown1970} developed it into the National Sanitation Foundation (NSF) WQI, with weights elicited from a panel of experts and curve-based sub-indices. Two families now dominate practice~\citep{uddin2021}:
+
+\begin{itemize}
+  \item \textbf{Weighted-arithmetic indices}, widely used in Indian river studies~\citep{tyagi2013}. Each parameter $i$ is converted to a quality rating $q_i$ relative to a permissible standard $S_i$ and an ideal value. It receives a unit weight $W_i \propto 1/S_i$, and the index is the weighted mean $\sum W_i q_i / \sum W_i$. The method is transparent and easy to compute. However, its weights depend on the \emph{units} in which the standards happen to be expressed, a property whose consequences we quantify in \cref{sec:wqi-weights}.
+  \item \textbf{Exceedance-based indices}, most prominently the CCME WQI~\citep{ccme2001}. These combine the scope, frequency and amplitude of standard violations over a period, rather than scoring each sample.
+\end{itemize}
+
+In both families the index is a deterministic function of its inputs. Predicting the index from \emph{all} of its inputs is therefore trivial. The scientifically interesting question is how much of it can be recovered from a \emph{subset} of them, and how that depends on which inputs are dropped.
+
+\subsection{Machine learning for WQI estimation}
+
+A large applied literature uses supervised learning to estimate WQI or WQI classes from water-quality parameters. Typical models are tree ensembles such as random forests~\citep{breiman2001} and gradient boosting~\citep{chen2016}, support vector machines, $k$-nearest neighbours and neural networks. Several studies have estimated an index from a reduced set of parameters~\citep[e.g.][]{ahmed2019}. Three methodological weaknesses recur in this literature, and this study is designed to avoid them:
+
+\begin{enumerate}
+  \item \textbf{Random row splits.} Visits from the same station are strongly correlated, so a random train/test split lets a model ``recognise'' a station it has already seen. This overstates accuracy for new sites. Structured, grouped cross-validation is recommended for exactly this situation~\citep{roberts2017}.
+  \item \textbf{Moving targets.} Some studies compute a reduced-parameter WQI for each subset and then predict \emph{that}. Because the target then changes with the subset, accuracies are not comparable across subset sizes. We keep the full-panel target fixed.
+  \item \textbf{No uncertainty.} Point predictions without calibrated intervals cannot tell an operator when a reduced-panel estimate should not be trusted. We use Gaussian processes~\citep{rasmussen2006} and distribution-free conformal prediction~\citep{vovk2005,romano2019,barber2021}.
+\end{enumerate}
+
+\subsection{Interpretability and evaluation}
+
+We rank parameter importance with impurity and gain importances, permutation importance, mutual information~\citep{kraskov2004} and SHAP values~\citep{lundberg2017}, plus an exact analytic decomposition of the formula. For evaluation we report \R{} (which on held-out data equals the Nash--Sutcliffe efficiency, NSE~\citep{nash1970}), RMSE, MAE, the Kling--Gupta efficiency (KGE~\citep{gupta2009}) and the accuracy of the resulting WQI category. The category is arguably the quantity a decision-maker actually uses.

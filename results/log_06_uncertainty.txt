@@ -1,0 +1,30 @@
+<frozen site>:107: RuntimeWarning: Unexpected value in sys.prefix, expected /home/mayank-tiwari/Projects/envi-project/.venv, got /home/mayank-tiwari/Projects/envi-project/scripts/../.venv
+<frozen site>:107: RuntimeWarning: Unexpected value in sys.exec_prefix, expected /home/mayank-tiwari/Projects/envi-project/.venv, got /home/mayank-tiwari/Projects/envi-project/scripts/../.venv
+[Parallel(n_jobs=16)]: Using backend LokyBackend with 16 concurrent workers.
+[Parallel(n_jobs=16)]: Done  15 out of  30 | elapsed:  5.2min remaining:  5.2min
+[Parallel(n_jobs=16)]: Done  30 out of  30 | elapsed:  7.5min finished
+           subset              method  coverage  mean_width  median_width  cov_turbidity_high  cov_turbidity_low  cov_Good  cov_Poor  cov_Very Poor  single_category_frac
+0              S3                 GPR     0.931      10.179         9.951               0.960              0.905     0.924     0.935          0.962                 0.601
+1              S3           Conformal     0.903       9.500         9.531               0.929              0.879     0.881     0.912          0.930                 0.621
+2              S3  Quantile GBM (raw)     0.769       7.219         7.265               0.783              0.756     0.762     0.777          0.746                 0.715
+3              S3                 CQR     0.909       9.019         9.070               0.935              0.886     0.909     0.915          0.888                 0.640
+4      S4-routine                 GPR     0.917       9.628         9.346               0.927              0.909     0.908     0.922          0.942                 0.625
+5      S4-routine           Conformal     0.916       9.132         9.161               0.925              0.907     0.893     0.928          0.928                 0.634
+6      S4-routine  Quantile GBM (raw)     0.747       6.560         6.694               0.748              0.746     0.753     0.745          0.751                 0.735
+7      S4-routine                 CQR     0.913       8.496         8.632               0.932              0.896     0.914     0.918          0.899                 0.660
+8              S5                 GPR     0.900       9.405         9.060               0.912              0.889     0.880     0.910          0.937                 0.634
+9              S5           Conformal     0.909       8.746         8.759               0.922              0.898     0.887     0.923          0.926                 0.654
+10             S5  Quantile GBM (raw)     0.743       6.521         6.528               0.750              0.737     0.751     0.744          0.733                 0.746
+11             S5                 CQR     0.916       8.590         8.596               0.939              0.896     0.909     0.926          0.908                 0.666
+12             S7                 GPR     0.911       3.581         2.935               0.920              0.902     0.927     0.908          0.901                 0.855
+13             S7           Conformal     0.914       3.208         3.148               0.918              0.910     0.936     0.911          0.876                 0.872
+14             S7  Quantile GBM (raw)     0.741       4.133         3.066               0.751              0.731     0.752     0.739          0.733                 0.852
+15             S7                 CQR     0.917       5.436         4.360               0.922              0.912     0.925     0.923          0.876                 0.800
+16  I3-importance                 GPR     0.891       7.347         6.980               0.879              0.901     0.924     0.886          0.818                 0.709
+17  I3-importance           Conformal     0.908       7.043         7.035               0.896              0.918     0.931     0.906          0.834                 0.721
+18  I3-importance  Quantile GBM (raw)     0.772       5.285         5.006               0.769              0.774     0.770     0.779          0.755                 0.785
+19  I3-importance                 CQR     0.915       7.465         7.190               0.915              0.915     0.918     0.921          0.892                 0.705
+20         Full-8                 GPR     0.860       2.154         0.860               0.862              0.858     0.898     0.872          0.674                 0.919
+21         Full-8           Conformal     0.923       2.503         2.512               0.939              0.910     0.929     0.932          0.883                 0.899
+22         Full-8  Quantile GBM (raw)     0.731       4.352         3.171               0.744              0.719     0.749     0.726          0.719                 0.851
+23         Full-8                 CQR     0.915       5.454         4.299               0.921              0.909     0.915     0.925          0.888                 0.807

@@ -1,0 +1,75 @@
+{
+  "fill_overall": {
+    "pH": 98.5,
+    "DO": 96.1,
+    "BOD": 78.1,
+    "FecalColiform": 84.3,
+    "EC": 25.8,
+    "TotalColiform": 24.9,
+    "Turbidity": 20.5,
+    "NitrateN": 20.0
+  },
+  "rows_by_year": {
+    "2018": 7400,
+    "2019": 8003,
+    "2020": 8210,
+    "2021": 9273,
+    "2023": 25,
+    "2024": 57
+  },
+  "funnel": {
+    "All river visits (suspect rows removed)": 32968,
+    "pH, DO, BOD (S3)": 24993,
+    "+ Fecal Coliform (S4-routine)": 21547,
+    "+ EC (S5)": 5961,
+    "+ Total Coli., Turbidity (S7)": 5256,
+    "+ Nitrate-N (all 8: target defined)": 4861
+  },
+  "category_counts": {
+    "Excellent": 61,
+    "Good": 1532,
+    "Poor": 2823,
+    "Very Poor": 445
+  },
+  "target_describe": {
+    "count": 4861.0,
+    "mean": 56.094,
+    "std": 14.062,
+    "min": 13.739,
+    "25%": 46.647,
+    "50%": 55.773,
+    "75%": 65.72,
+    "max": 92.555
+  },
+  "pct_exceeding_standard": {
+    "pH": 2.9,
+    "BOD": 12.2,
+    "DO": 7.9,
+    "Turbidity": 47.6,
+    "NitrateN": 0.9,
+    "FecalColiform": 33.7,
+    "EC": 10.9,
+    "TotalColiform": 22.1
+  },
+  "check_wqi_recomputed_maxabs": 5.684341886080802e-14,
+  "n_stations_model": 593,
+  "n_stations_river": 888,
+  "n_rivers_model": 58,
+  "n_states_model": 21,
+  "visits_per_station": {
+    "count": 593.0,
+    "mean": 8.2,
+    "std": 4.11,
+    "min": 1.0,
+    "25%": 5.0,
+    "50%": 9.0,
+    "75%": 11.0,
+    "max": 19.0
+  },
+  "season_counts": {
+    "Monsoon": 1819,
+    "Post-monsoon": 1118,
+    "Pre-monsoon": 1026,
+    "Winter": 898
+  }
+}
