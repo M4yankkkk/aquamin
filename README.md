@@ -2,6 +2,7 @@
 
 **CV301: Environmental Engineering · NITK Surathkal · Faculty: Saranya P**
 Team: Mayank Tiwari (241CV235), Krupa Marol (241CV231), Srushti Dongre (241CV248), Sreenidhi Golamaru (241CV247), Bharath Chowdary (241CV213)
+Final course project submission, October 2026.
 
 > **Question:** Can reduced-parameter monitoring provide reliable Water Quality Index (WQI) prediction for data-scarce river systems?
 
