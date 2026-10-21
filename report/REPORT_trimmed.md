@@ -599,7 +599,7 @@ Figure 14 show RMSE on the fixed unseen test stations as the training set shrink
 
 > **Finding 3**
 >
-> A three-parameter model needs data from about **25 or more stations** (roughly 200 visits) to beat simply re-weighting the formula, and about **120 stations** to come within 0.01 R² of its full-data accuracy. Below that, use the formula or a GPR. With full training data, use XGBoost.
+> A three-parameter model needs data from about **25 or more stations** (roughly 200 visits) to beat simply re-weighting the formula, and about **120 stations** to come within 0.015 R² of its full-data accuracy (within 0.01 by about 240 stations). Below that, use the formula or a GPR. With full training data, use XGBoost.
 
 ### 6.6 Can the model say when not to trust it? (RQ4)
 
